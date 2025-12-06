@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { ArrowRight, BookOpen, HardHat, Sparkles } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Insights() {
   const articles = [
@@ -30,6 +31,11 @@ export default function Insights() {
 
   return (
     <div className="bg-stone-50 min-h-screen pb-20">
+      <SEO 
+        title="Construction Insights & Expertise"
+        description="Expert insights on luxury home construction, post-construction care, premium material preservation, and modern building standards from Saran Developers."
+        keywords="luxury construction insights, post-construction cleaning, material care, marble preservation, smart home systems, building standards"
+      />
       <div className="bg-neutral-900 text-white py-24 px-6">
         <div className="container mx-auto max-w-4xl text-center">
           <h4 className="text-amber-500 font-bold text-xs tracking-[0.2em] uppercase mb-6">Knowledge Base</h4>

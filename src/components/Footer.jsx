@@ -18,7 +18,7 @@ export default function Footer() {
               <h4 className="text-amber-500 text-sm tracking-widest uppercase font-bold">Maid VIP: Preferred Cleaning Partner</h4>
               <div className="w-full h-[400px] bg-neutral-800 overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-500">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3300.4880955914073!2d-118.86352620000001!3d34.1850034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e824e74be91f5d%3A0x5a0312249644f7f7!2sMaid%20VIP!5e0!3m2!1sen!2sus!4v1764994905869!5m2!1sen!2sus" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306750.838157908!2d-122.69052640549081!3d35.96534067529977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2579511d96ee6347%3A0xfdc6e07670905ac0!2sMaid%20VIP!5e0!3m2!1sen!2sus!4v1765057596268!5m2!1sen!2sus" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 

@@ -1,10 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Lightbulb, BookOpen } from 'lucide-react';
 import SEO from '../components/SEO';
+import { base44 } from '@/api/base44Client';
 
 export default function InsightMaterials() {
+  const [keyTakeaways, setKeyTakeaways] = useState([]);
+  const [relatedArticles, setRelatedArticles] = useState([]);
+  const [caseStudy, setCaseStudy] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const generateAIContent = async () => {
+      try {
+        const [takeawaysRes, relatedRes, caseStudyRes] = await Promise.all([
+          base44.integrations.Core.InvokeLLM({
+            prompt: `Generate 4 concise key takeaways (one sentence each) for this article about preserving high-end materials like marble, travertine, and hardwood in luxury homes. Focus on: calcium carbonate sensitivity, pH-neutral cleaning, sealing techniques, and hygroscopic wood properties.`,
+            response_json_schema: {
+              type: "object",
+              properties: {
+                takeaways: { type: "array", items: { type: "string" } }
+              }
+            }
+          }),
+          base44.integrations.Core.InvokeLLM({
+            prompt: `Suggest 2 related article topics for someone reading about high-end material preservation in luxury homes. Topics should relate to: stone care, wood maintenance, or cleaning protocols. Return title and brief description.`,
+            response_json_schema: {
+              type: "object",
+              properties: {
+                articles: { 
+                  type: "array", 
+                  items: { 
+                    type: "object",
+                    properties: {
+                      title: { type: "string" },
+                      description: { type: "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }),
+          base44.integrations.Core.InvokeLLM({
+            prompt: `Write a brief 2-paragraph case study (150 words) about a Malibu estate where acidic cleaners permanently etched imported Carrara marble, and how another property was saved by implementing proper pH-neutral maintenance protocols. Use professional, architectural tone.`
+          })
+        ]);
+
+        setKeyTakeaways(takeawaysRes.takeaways || []);
+        setRelatedArticles(relatedRes.articles || []);
+        setCaseStudy(caseStudyRes);
+      } catch (error) {
+        console.error('AI content generation failed:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    generateAIContent();
+  }, []);
+
   return (
     <>
       <SEO 
@@ -63,7 +118,51 @@ export default function InsightMaterials() {
                   Gold-Standard Maintenance Protocols
                 </a>
               </div>
+
+              {/* AI-Generated Case Study */}
+              {!loading && caseStudy && (
+                <div className="my-12 bg-gradient-to-br from-stone-50 to-stone-100 border-l-4 border-amber-600 p-8 rounded-sm">
+                  <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
+                    <BookOpen className="text-amber-600" size={20} />
+                    Case Study: The Etching Incident
+                  </h3>
+                  <p className="text-neutral-700 leading-relaxed whitespace-pre-line">{caseStudy}</p>
+                </div>
+              )}
             </article>
+
+            {/* AI-Generated Key Takeaways */}
+            {!loading && keyTakeaways.length > 0 && (
+              <div className="mt-12 bg-amber-50 border border-amber-200 rounded-sm p-8">
+                <h3 className="font-bold text-xl mb-6 flex items-center gap-2 text-amber-900">
+                  <Lightbulb className="text-amber-600" size={20} />
+                  Key Takeaways
+                </h3>
+                <ul className="space-y-3">
+                  {keyTakeaways.map((takeaway, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-amber-900">
+                      <span className="text-amber-600 font-bold mt-1">•</span>
+                      <span className="leading-relaxed">{takeaway}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* AI-Generated Related Articles */}
+            {!loading && relatedArticles.length > 0 && (
+              <div className="mt-12 border-t border-stone-200 pt-12">
+                <h3 className="font-bold text-xl mb-6">Related Reading</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {relatedArticles.map((article, idx) => (
+                    <div key={idx} className="bg-white border border-stone-200 p-6 hover:border-amber-400 transition-colors">
+                      <h4 className="font-serif text-lg font-bold mb-2 text-neutral-900">{article.title}</h4>
+                      <p className="text-neutral-600 text-sm leading-relaxed">{article.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="mt-20 pt-10 border-t border-neutral-200">
               <p className="text-xs tracking-widest uppercase text-neutral-400 mb-4">Next in Series</p>

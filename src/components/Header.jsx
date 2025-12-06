@@ -18,7 +18,7 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: 'Home' },
+    { name: 'Home', path: '/' },
     { name: 'Portfolio', path: 'Portfolio' },
     { name: 'Insights', path: 'Insights' },
   ];
@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full z-50 transition-all duration-300 bg-neutral-900 py-4 shadow-md">
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        <Link to={createPageUrl('Home')} className="text-2xl font-serif tracking-widest uppercase font-bold text-white">
+        <Link to="/" className="text-2xl font-serif tracking-widest uppercase font-bold text-white">
           Saran Developers
         </Link>
 
@@ -35,9 +35,9 @@ export default function Header() {
           {navLinks.map((link) => (
             <Link
               key={link.name}
-              to={createPageUrl(link.path)}
+              to={link.path === '/' ? '/' : createPageUrl(link.path)}
               className={`text-sm font-medium tracking-widest uppercase transition-colors hover:text-amber-600 ${
-                location.pathname.includes(link.path)
+                location.pathname === link.path || (link.path !== '/' && location.pathname.includes(link.path))
                   ? 'text-amber-600' 
                   : 'text-white/90'
               }`}
@@ -75,7 +75,7 @@ export default function Header() {
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
-                  to={createPageUrl(link.path)}
+                  to={link.path === '/' ? '/' : createPageUrl(link.path)}
                   className="text-neutral-900 font-medium tracking-widest uppercase"
                   onClick={() => setIsOpen(false)}
                 >

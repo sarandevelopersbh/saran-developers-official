@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import ProjectCard from '../components/ProjectCard';
 import { Search, Filter, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function Portfolio() {
   const [filters, setFilters] = useState({
@@ -65,6 +66,11 @@ export default function Portfolio() {
 
   return (
     <div className="pt-20 bg-stone-50 min-h-screen">
+      <SEO 
+        title="Portfolio - Luxury Estate Collection"
+        description="Explore Saran Developers' portfolio of luxury residential estates in Beverly Hills, Malibu, San Francisco, and beyond. Custom homes featuring modern architecture and premium materials."
+        keywords="luxury real estate portfolio, custom estates, Beverly Hills homes, Malibu properties, high-end residential, architectural masterpieces"
+      />
       <div className="bg-neutral-900 text-white py-20 px-6">
         <div className="container mx-auto max-w-4xl text-center">
           <h4 className="text-amber-500 font-bold text-xs tracking-[0.2em] uppercase mb-6">Our Masterpieces</h4>

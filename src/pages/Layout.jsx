@@ -1,14 +1,14 @@
+import { Outlet } from "react-router-dom";
+// We use "../" to go up one level out of 'pages' into 'components'
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-
-export default function Layout({ children }) {
+export default function Layout() {
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col font-sans text-neutral-800 selection:bg-amber-200 selection:text-neutral-900">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {children}
+        <Outlet />
       </main>
       <Footer />
     </div>

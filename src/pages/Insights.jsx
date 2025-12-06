@@ -8,7 +8,7 @@ const STATIC_POSTS = [
   {
     id: 'post1',
     title: "The Critical Phase: Post-Construction Care",
-    excerpt: "Why the final 1% of the build determines the longevity of the asset. A deep dive into settling periods and material acclimatization.",
+    excerpt: "Why the final 1% of the build determines the longevity of the asset.",
     author: "David Saran",
     date: "Oct 12, 2023",
     readTime: "5 min read",
@@ -18,83 +18,29 @@ const STATIC_POSTS = [
   {
     id: 'post2',
     title: "Preserving High-End Materials",
-    excerpt: "The chemistry of care for natural stone and engineered hardwood. How to maintain the showroom finish of your estate.",
+    excerpt: "The chemistry of care for natural stone.",
     author: "Sarah Jenkins",
     date: "Sep 28, 2023",
     readTime: "7 min read",
     image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9VOlTqs8xdzrdp1Lm3vm0vIIXsSWM2Kh-T1fx6luU_5PiGUCbOz5ZU-qK0GFOxvUoY0XIRmlZyQM9IpodqV1XeTYs-l77EC5UPnJPDp26v-4W-GfbdYiaOF2IIvMS40HGa03yLqhXqXmGo_IdHntCVw26JTNPhYdd6Ie0V8gERx-91bWWAWCkhbvBBDjw/w640-h350/penthouse-interior-view-bay-bridge-floor-care.png",
     category: "Maintenance"
-  },
-  {
-    id: 'post3',
-    title: "Defining Luxury: Invisible Systems",
-    excerpt: "The invisible systems and domotics that power modern living. From HVAC sound-dampening to smart security integration.",
-    author: "David Saran",
-    date: "Aug 15, 2023",
-    readTime: "6 min read",
-    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk6Gpjgb2FEhuvsUrpn3HkvfK9QKlIeoeeaemi4qBHkylP7s3L2ylA-9pmBuUh665vRa0_ILf-PjqRAb5u7NxxQo4ZZaUX8A9Kln8CFCrqVR09f-2nlKNxnV308GsSPeQezSerz5B_KM2yoeY8GbjeqT4cDkv8_9NCMKtqdiXuD0LbSvH2wvAfdV65As5f/w640-h350/coastal-estate-pool-patio-maintenance-montecito.png",
-    category: "Technology"
   }
-];
-
-export default function Insights() {
+];export default function Insights() {
   return (
     <div className="pt-20 bg-stone-50 min-h-screen">
-      <SEO 
-        title="Insights - Expert Knowledge" 
-        description="Expert advice on luxury home maintenance and construction standards."
-      />
-      
-      {/* Header */}
-      <div className="bg-neutral-900 text-white py-20 px-6">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h4 className="text-amber-500 font-bold text-xs tracking-[0.2em] uppercase mb-6">Expertise & Knowledge</h4>
-          <h1 className="text-5xl md:text-6xl font-serif mb-8">Construction Insights</h1>
-          <p className="text-neutral-400 text-lg leading-relaxed">
-            Sharing our expertise on building standards, material care, and the future of luxury living.
-          </p>
-        </div>
+      <SEO title="Insights" description="Expert advice." />
+      <div className="bg-neutral-900 text-white py-20 px-6 text-center">
+        <h1 className="text-5xl font-serif mb-8">Construction Insights</h1>
       </div>
-
-      {/* Blog Grid */}
       <div className="container mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {STATIC_POSTS.map((post) => (
-            <div key={post.id} className="bg-white border border-stone-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
-              <div className="h-64 overflow-hidden relative">
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">
-                  {post.category}
-                </div>
-              </div>
-              
-              <div className="p-8 flex flex-col flex-grow">
-                <div className="flex items-center gap-4 text-xs text-neutral-400 mb-4 uppercase tracking-wider">
-                  <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
-                  <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
-                </div>
-                
-                <h3 className="text-xl font-serif font-bold text-neutral-900 mb-3 group-hover:text-amber-600 transition-colors">
-                  {post.title}
-                </h3>
-                
-                <p className="text-neutral-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                
-                <div className="mt-auto flex items-center justify-between pt-6 border-t border-neutral-100">
-                  <div className="flex items-center gap-2 text-xs font-bold text-neutral-900 uppercase tracking-widest">
-                    <User size={12} className="text-amber-600" /> {post.author}
-                  </div>
-                  <Link to="#" className="text-amber-600 hover:text-neutral-900 transition-colors">
-                    <ArrowRight size={20} />
-                  </Link>
-                </div>
-              </div>
+            <div key={post.id} className="bg-white p-8 shadow-md">
+              <h3 className="text-xl font-bold mb-3">{post.title}</h3>
+              <p className="text-sm mb-4">{post.excerpt}</p>
+              <Link to="#" className="text-amber-600 flex items-center gap-2">
+                Read More <ArrowRight size={16} />
+              </Link>
             </div>
           ))}
         </div>

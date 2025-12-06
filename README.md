@@ -1,7 +1,7 @@
 # Fixed Build - Saran Developers
 
 
-This app was created automatically by Base44.
+This app was created automatically by Saran Developers.
 It's a Vite+React app that communicates with the Base44 API.
 
 ## Running the app

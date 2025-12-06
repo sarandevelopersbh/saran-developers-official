@@ -57,4 +57,48 @@ export default function Insights() {
       </div>
 
       {/* Blog Grid */}
-      <div className="container mx-auto
+      <div className="container mx-auto px-6 md:px-12 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {STATIC_POSTS.map((post) => (
+            <div key={post.id} className="bg-white border border-stone-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
+              <div className="h-64 overflow-hidden relative">
+                <img 
+                  src={post.image} 
+                  alt={post.title} 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">
+                  {post.category}
+                </div>
+              </div>
+              
+              <div className="p-8 flex flex-col flex-grow">
+                <div className="flex items-center gap-4 text-xs text-neutral-400 mb-4 uppercase tracking-wider">
+                  <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
+                  <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
+                </div>
+                
+                <h3 className="text-xl font-serif font-bold text-neutral-900 mb-3 group-hover:text-amber-600 transition-colors">
+                  {post.title}
+                </h3>
+                
+                <p className="text-neutral-500 text-sm leading-relaxed mb-6 line-clamp-3">
+                  {post.excerpt}
+                </p>
+                
+                <div className="mt-auto flex items-center justify-between pt-6 border-t border-neutral-100">
+                  <div className="flex items-center gap-2 text-xs font-bold text-neutral-900 uppercase tracking-widest">
+                    <User size={12} className="text-amber-600" /> {post.author}
+                  </div>
+                  <Link to="#" className="text-amber-600 hover:text-neutral-900 transition-colors">
+                    <ArrowRight size={20} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

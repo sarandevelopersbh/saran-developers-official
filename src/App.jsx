@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import Insights from './pages/Insights'; // <--- Added this import
 
-// We import Header/Footer directly here. 
-// Since App.jsx is in 'src', the single dot './' is CORRECT here.
+// Header/Footer imports (Correct path from src folder)
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -19,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/insights" element={<Insights />} /> {/* <--- Added this Route */}
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

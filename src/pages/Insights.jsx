@@ -84,3 +84,21 @@ export default function Insights() {
                 
                 <p className="text-neutral-500 text-sm leading-relaxed mb-6 line-clamp-3">
                   {post.excerpt}
+                </p>
+                
+                <div className="mt-auto flex items-center justify-between pt-6 border-t border-neutral-100">
+                  <div className="flex items-center gap-2 text-xs font-bold text-neutral-900 uppercase tracking-widest">
+                    <User size={12} className="text-amber-600" /> {post.author}
+                  </div>
+                  <Link to="#" className="text-amber-600 hover:text-neutral-900 transition-colors">
+                    <ArrowRight size={20} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

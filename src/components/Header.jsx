@@ -22,6 +22,9 @@ export default function Header() {
           <Link to="/portfolio" className="text-gray-900 hover:text-amber-600 transition-colors">
             Portfolio
           </Link>
+          <Link to="/insights" className="text-gray-900 hover:text-amber-600 transition-colors">
+            Insights
+          </Link>
           <Link to="/contact" className="text-gray-900 hover:text-amber-600 transition-colors">
             Contact
           </Link>
@@ -40,6 +43,7 @@ export default function Header() {
           <div className="absolute top-0 left-0 w-full h-screen bg-white flex flex-col items-center justify-center space-y-8 text-xl font-bold uppercase tracking-widest md:hidden">
              <Link to="/" onClick={() => setIsOpen(false)} className="text-gray-900 hover:text-amber-600">Home</Link>
              <Link to="/portfolio" onClick={() => setIsOpen(false)} className="text-gray-900 hover:text-amber-600">Portfolio</Link>
+             <Link to="/insights" onClick={() => setIsOpen(false)} className="text-gray-900 hover:text-amber-600">Insights</Link>
              <Link to="/contact" onClick={() => setIsOpen(false)} className="text-gray-900 hover:text-amber-600">Contact</Link>
           </div>
         )}
